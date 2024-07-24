@@ -39,6 +39,9 @@ $hotels = [
 
 ];
 
+// filtro per parcheggio in base a valore checkbox
+$parkingFilter = isset($_GET['parking']) && $_GET['parking'] == 'on';
+
 
 ?>
 
@@ -61,40 +64,59 @@ $hotels = [
     </div>
 
     <div class="row justify-content-center">
+        <!-- filtri -->
+        <div class="col-8">
+
+            <form action="index.php" method="GET">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="on" name="parking" id="flexCheckDefault" >
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Parcheggio
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Filtra</button>
+            </form>
+
+        </div>
         <!-- tabella -->
         <div class="col-8">
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Descrizione</th>
-                    <th scope="col">Parcheggio</th>
-                    <th scope="col">Voto</th>
-                    <th scope="col">Distanza dal centro</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($hotels as $hotel): ?>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo $hotel['name'] ?></td>
-                        <td><?php echo $hotel['description'] ?></td>
-                        <!-- condizione parcheggio -->
-                        <td>
-                            <?php if ($hotel['parking'] === true): ?>
-                                Si
-                            <?php else: ?>
-                                No
-                            <?php endif; ?>
-                        </td>
-
-                        <td><?php echo $hotel['vote'] ?></td>
-                        <td><?php echo $hotel['distance_to_center'] ?></td>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Parcheggio</th>
+                        <th scope="col">Voto</th>
+                        <th scope="col">Distanza dal centro</th>
                     </tr>
-                <?php endforeach; ?>
-               
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach($hotels as $hotel): ?>
+                        <!-- se checkbox non cliccata stampa tutto se cliccata stampa quelli con parcheggio = true -->
+                        <?php if ($parkingFilter === false || $hotel['parking'] === true): ?>
+                            <tr>
+                                <td><?php echo $hotel['name'] ?></td>
+                                <td><?php echo $hotel['description'] ?></td>
+                                <!-- condizione parcheggio -->
+                                <td>
+                                    <?php if ($hotel['parking'] === true): ?>
+                                        Si
+                                    <?php else: ?>
+                                        No
+                                    <?php endif; ?>
+                                </td>
+
+                                <td><?php echo $hotel['vote'] ?></td>
+                                <td><?php echo $hotel['distance_to_center'] ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                
+                </tbody>
+            </table>
 
         </div>
     </div>
