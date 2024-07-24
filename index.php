@@ -52,6 +52,45 @@ $hotels = [
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+
+<div class="container-fluid">
+    <!-- titolo -->
+    <div class="row text-center"> 
+        <h1>PHP Hotel</h1>
+         
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- tabella -->
+        <div class="col-8">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Parcheggio</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Distanza dal centro</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($hotels as $hotel): ?>
+                    <tr>
+                        <td><?php echo $hotel['name'] ?></td>
+                        <td><?php echo $hotel['description'] ?></td>
+                        <td><?php echo $hotel['parking'] ?></td>
+                        <td><?php echo $hotel['vote'] ?></td>
+                        <td><?php echo $hotel['distance_to_center'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+               
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+</div>
     
 
 
