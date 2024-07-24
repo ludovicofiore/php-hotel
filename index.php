@@ -79,11 +79,19 @@ $hotels = [
                     <tr>
                         <td><?php echo $hotel['name'] ?></td>
                         <td><?php echo $hotel['description'] ?></td>
-                        <td><?php echo $hotel['parking'] ?></td>
+                        <!-- condizione parcheggio -->
+                        <td>
+                            <?php if ($hotel['parking'] === true): ?>
+                                Si
+                            <?php else: ?>
+                                No
+                            <?php endif; ?>
+                        </td>
+
                         <td><?php echo $hotel['vote'] ?></td>
                         <td><?php echo $hotel['distance_to_center'] ?></td>
                     </tr>
-                <?php endforeach ?>
+                <?php endforeach; ?>
                
             </tbody>
         </table>
